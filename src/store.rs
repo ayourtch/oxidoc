@@ -5,7 +5,7 @@ use std::fs::{File, OpenOptions};
 use std::io::{Read, Write};
 use std::path::{Path, PathBuf};
 
-use bincode::{self, Infinite};
+use bincode::{self};
 use serde::de::DeserializeOwned;
 use serde::ser::Serialize;
 use strsim::levenshtein;
@@ -57,7 +57,7 @@ pub fn serialize_object<S, T>(data: &S, path: T) -> Result<()>
 {
     let path_as = path.as_ref();
 
-    let data = bincode::serialize(data, Infinite)
+    let data = bincode::serialize(data)
         .chain_err(|| format!("Could not serialize data for {}", path_as.display()))?;
 
     let mut bincoded_file = create_or_open_file(path_as)?;

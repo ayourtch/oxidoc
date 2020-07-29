@@ -61,7 +61,7 @@ fn app<'a, 'b>() -> App<'a, 'b> {
 }
 
 fn main() {
-    env_logger::init().unwrap();
+    env_logger::init();
 
     if let Err(ref e) = run() {
         error!("error: {}", e);
